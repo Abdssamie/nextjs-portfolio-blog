@@ -36,7 +36,7 @@ export function FeaturedProjects() {
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {featuredProjects.map((project, index) => (
+                    {featuredProjects.map((project) => (
                         <Link
                             key={project.slug}
                             href={`/projects/${project.slug}`}

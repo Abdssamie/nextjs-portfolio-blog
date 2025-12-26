@@ -47,7 +47,7 @@ export function ProjectLayout({
         <article>
             {/* Carousel Hero - if sections exist */}
             {hasSections ? (
-                <ProjectCarousel sections={sections} projectTitle={title} />
+                <ProjectCarousel sections={sections} />
             ) : image ? (
                 /* Single Hero Image - fallback */
                 <div className="relative w-full aspect-video max-h-[500px] overflow-hidden">
