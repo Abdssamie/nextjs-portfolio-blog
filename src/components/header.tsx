@@ -3,6 +3,8 @@ import { MobileNav } from "./navigation/mobile-nav";
 import { ModeToggle } from "./theme-toggle";
 import Link from "next/link";
 import Image from "next/image";
+import { Linkedin } from "lucide-react";
+import { SiGithub, SiX } from "react-icons/si";
 
 /**
  * Site Header Component
@@ -38,6 +40,33 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center space-x-2 sm:space-x-4">
+          <a
+            href="https://github.com/Abdssamie"
+            target="_blank"
+            rel="noreferrer"
+            className="text-muted-foreground hover:text-foreground hidden sm:block"
+          >
+            <SiGithub className="h-5 w-5" />
+            <span className="sr-only">GitHub</span>
+          </a>
+          <a
+            href="https://x.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-muted-foreground hover:text-foreground hidden sm:block"
+          >
+            <SiX className="h-5 w-5" />
+            <span className="sr-only">X</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-muted-foreground hover:text-foreground hidden sm:block"
+          >
+            <Linkedin className="h-5 w-5" />
+            <span className="sr-only">LinkedIn</span>
+          </a>
           <ModeToggle />
           {/* Mobile navigation - hidden on desktop */}
           <MobileNav items={mobileNavItems} />

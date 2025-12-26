@@ -12,6 +12,8 @@ import {
     SiGit,
     SiFastapi,
     SiNeovim,
+    SiLinear,
+    SiGithub,
 } from "react-icons/si";
 
 const technologies = [
@@ -79,6 +81,18 @@ const technologies = [
         icon: <SiNeovim className="text-[#57A143]" />,
         name: "Neovim",
         description: "Hyperextensible Vim-based text editor",
+        span: "md:col-span-1",
+    },
+    {
+        icon: <SiLinear className="text-[#5E6AD2]" />,
+        name: "Linear",
+        description: "Issue tracking & project management",
+        span: "md:col-span-1",
+    },
+    {
+        icon: <SiGithub className="text-foreground" />,
+        name: "GitHub",
+        description: "Collaboration & version control",
         span: "md:col-span-2",
     },
 ];
