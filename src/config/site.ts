@@ -1,7 +1,60 @@
 import { Mail, Linkedin, MessageCircle } from "lucide-react";
 import { SiGithub, SiX } from "react-icons/si";
+import { IconType } from "react-icons";
+import { LucideIcon } from "lucide-react";
 
-export const siteConfig = {
+export interface Author {
+    name: string;
+    image: string;
+    bio: string;
+    bioParts: string[];
+}
+
+export interface NavItem {
+    label: string;
+    href: string;
+}
+
+export interface SocialLink {
+    label: string;
+    href: string;
+    icon: IconType | LucideIcon;
+    ctaLabel: string;
+}
+
+export interface Skill {
+    text: string;
+    className: string;
+}
+
+export interface Hero {
+    titlePrefix: string;
+    titleSuffix: string;
+    skills: Skill[];
+}
+
+export interface Contact {
+    title: string;
+    description: string;
+    ctaIcon: IconType | LucideIcon;
+    availability: string;
+}
+
+export interface SiteConfig {
+    name: string;
+    title: string;
+    description: string;
+    url: string;
+    author: Author;
+    nav: NavItem[];
+    social: {
+        [key: string]: SocialLink;
+    };
+    hero: Hero;
+    contact: Contact;
+}
+
+export const siteConfig: SiteConfig = {
   name: "Abdessamie",
   title: "Abdessamie - Full Stack Developer",
   description: "I am a Full Stack Developer specializing in React, Next.js, TypeScript, Python, and Postgres. I turn complex problems into scalable, user-friendly applications.",

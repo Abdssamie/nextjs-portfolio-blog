@@ -14,25 +14,25 @@ import { siteConfig } from "@/config/site";
 
 const mobileNavItems = siteConfig.nav;
 
-const socialLinks = [
-  {
-    label: siteConfig.social.github.label,
-    href: siteConfig.social.github.href,
-    icon: <siteConfig.social.github.icon className="h-5 w-5" />,
-  },
-  {
-    label: siteConfig.social.x.label,
-    href: siteConfig.social.x.href,
-    icon: <siteConfig.social.x.icon className="h-5 w-5" />,
-  },
-  {
-    label: siteConfig.social.linkedin.label,
-    href: siteConfig.social.linkedin.href,
-    icon: <siteConfig.social.linkedin.icon className="h-5 w-5" />,
-  },
-];
-
 export function SiteHeader() {
+  const socialLinks = [
+    {
+      label: siteConfig.social.github.label,
+      href: siteConfig.social.github.href,
+      icon: <siteConfig.social.github.icon className="h-5 w-5" />,
+    },
+    {
+      label: siteConfig.social.x.label,
+      href: siteConfig.social.x.href,
+      icon: <siteConfig.social.x.icon className="h-5 w-5" />,
+    },
+    {
+      label: siteConfig.social.linkedin.label,
+      href: siteConfig.social.linkedin.href,
+      icon: <siteConfig.social.linkedin.icon className="h-5 w-5" />,
+    },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-xs supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">

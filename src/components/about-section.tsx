@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import DOMPurify from "isomorphic-dompurify";
 import { siteConfig } from "@/config/site";
 
 export function AboutSection() {
@@ -32,7 +33,7 @@ export function AboutSection() {
 
                     <div className="space-y-4 text-base leading-relaxed text-slate-600 dark:text-white/80 sm:text-lg md:text-xl">
                         {siteConfig.author.bioParts.map((part, index) => (
-                            <p key={index} dangerouslySetInnerHTML={{ __html: part }} />
+                            <p key={index} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(part) }} />
                         ))}
                     </div>
                 </div>

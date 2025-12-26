@@ -25,24 +25,20 @@ export interface ProjectPostMeta extends MdxItemMeta {
     sections?: ProjectSection[];
 }
 
+const projectFieldMapper = (data: Record<string, unknown>) => ({
+    image: (data.image as string) || undefined,
+    tags: (data.tags as string[]) || undefined,
+    github: (data.github as string) || undefined,
+    demo: (data.demo as string) || undefined,
+    sections: (data.sections as ProjectSection[]) || undefined,
+});
+
 export function getAllProjects(): ProjectPostMeta[] {
-    return getAllItems<ProjectPostMeta>(contentDirectory, (data) => ({
-        image: (data.image as string) || undefined,
-        tags: (data.tags as string[]) || undefined,
-        github: (data.github as string) || undefined,
-        demo: (data.demo as string) || undefined,
-        sections: (data.sections as ProjectSection[]) || undefined,
-    }));
+    return getAllItems<ProjectPostMeta>(contentDirectory, projectFieldMapper);
 }
 
 export function getProjectBySlug(slug: string): ProjectPost | null {
-    return getItemBySlug<ProjectPost>(contentDirectory, slug, (data) => ({
-        image: (data.image as string) || undefined,
-        tags: (data.tags as string[]) || undefined,
-        github: (data.github as string) || undefined,
-        demo: (data.demo as string) || undefined,
-        sections: (data.sections as ProjectSection[]) || undefined,
-    }));
+    return getItemBySlug<ProjectPost>(contentDirectory, slug, projectFieldMapper);
 }
 
 export function getAllProjectSlugs(): string[] {

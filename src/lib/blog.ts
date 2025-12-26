@@ -15,20 +15,18 @@ export interface BlogPostMeta extends MdxItemMeta {
     tags?: string[];
 }
 
+const blogFieldMapper = (data: Record<string, unknown>) => ({
+    author: (data.author as string) || "Anonymous",
+    image: (data.image as string) || undefined,
+    tags: (data.tags as string[]) || undefined,
+});
+
 export function getAllPosts(): BlogPostMeta[] {
-    return getAllItems<BlogPostMeta>(contentDirectory, (data) => ({
-        author: (data.author as string) || "Anonymous",
-        image: (data.image as string) || undefined,
-        tags: (data.tags as string[]) || undefined,
-    }));
+    return getAllItems<BlogPostMeta>(contentDirectory, blogFieldMapper);
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
-    return getItemBySlug<BlogPost>(contentDirectory, slug, (data) => ({
-        author: (data.author as string) || "Anonymous",
-        image: (data.image as string) || undefined,
-        tags: (data.tags as string[]) || undefined,
-    }));
+    return getItemBySlug<BlogPost>(contentDirectory, slug, blogFieldMapper);
 }
 
 export function getAllSlugs(): string[] {
