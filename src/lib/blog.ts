@@ -17,17 +17,17 @@ export interface BlogPostMeta extends MdxItemMeta {
 
 export function getAllPosts(): BlogPostMeta[] {
     return getAllItems<BlogPostMeta>(contentDirectory, (data) => ({
-        author: data.author || "Anonymous",
-        image: data.image || undefined,
-        tags: data.tags || undefined,
+        author: (data.author as string) || "Anonymous",
+        image: (data.image as string) || undefined,
+        tags: (data.tags as string[]) || undefined,
     }));
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
     return getItemBySlug<BlogPost>(contentDirectory, slug, (data) => ({
-        author: data.author || "Anonymous",
-        image: data.image || undefined,
-        tags: data.tags || undefined,
+        author: (data.author as string) || "Anonymous",
+        image: (data.image as string) || undefined,
+        tags: (data.tags as string[]) || undefined,
     }));
 }
 

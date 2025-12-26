@@ -27,21 +27,21 @@ export interface ProjectPostMeta extends MdxItemMeta {
 
 export function getAllProjects(): ProjectPostMeta[] {
     return getAllItems<ProjectPostMeta>(contentDirectory, (data) => ({
-        image: data.image || undefined,
-        tags: data.tags || undefined,
-        github: data.github || undefined,
-        demo: data.demo || undefined,
-        sections: data.sections || undefined,
+        image: (data.image as string) || undefined,
+        tags: (data.tags as string[]) || undefined,
+        github: (data.github as string) || undefined,
+        demo: (data.demo as string) || undefined,
+        sections: (data.sections as ProjectSection[]) || undefined,
     }));
 }
 
 export function getProjectBySlug(slug: string): ProjectPost | null {
     return getItemBySlug<ProjectPost>(contentDirectory, slug, (data) => ({
-        image: data.image || undefined,
-        tags: data.tags || undefined,
-        github: data.github || undefined,
-        demo: data.demo || undefined,
-        sections: data.sections || undefined,
+        image: (data.image as string) || undefined,
+        tags: (data.tags as string[]) || undefined,
+        github: (data.github as string) || undefined,
+        demo: (data.demo as string) || undefined,
+        sections: (data.sections as ProjectSection[]) || undefined,
     }));
 }
 

@@ -10,7 +10,7 @@ export interface MdxItem {
   date: string;
   readingTime: string;
   content: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface MdxItemMeta {
@@ -19,12 +19,12 @@ export interface MdxItemMeta {
   description: string;
   date: string;
   readingTime: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export function getAllItems<T extends MdxItemMeta>(
   contentDirectory: string,
-  customFields: (data: any, content: string) => Partial<T> = () => ({})
+  customFields: (data: Record<string, unknown>, content: string) => Partial<T> = () => ({})
 ): T[] {
   if (!fs.existsSync(contentDirectory)) {
     return [];
@@ -58,7 +58,7 @@ export function getAllItems<T extends MdxItemMeta>(
 export function getItemBySlug<T extends MdxItem>(
   contentDirectory: string,
   slug: string,
-  customFields: (data: any, content: string) => Partial<T> = () => ({})
+  customFields: (data: Record<string, unknown>, content: string) => Partial<T> = () => ({})
 ): T | null {
   const filePath = path.join(contentDirectory, `${slug}.mdx`);
 
