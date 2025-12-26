@@ -3,6 +3,8 @@ import { MobileNav } from "./navigation/mobile-nav";
 import { ModeToggle } from "./theme-toggle";
 import Link from "next/link";
 import Image from "next/image";
+import { Linkedin } from "lucide-react";
+import { SiGithub, SiX } from "react-icons/si";
 
 /**
  * Site Header Component
@@ -15,6 +17,24 @@ const mobileNavItems = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Blog", href: "/blog" },
+];
+
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/Abdssamie",
+    icon: <SiGithub className="h-5 w-5" />,
+  },
+  {
+    label: "X",
+    href: "https://x.com",
+    icon: <SiX className="h-5 w-5" />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/",
+    icon: <Linkedin className="h-5 w-5" />,
+  },
 ];
 
 export function SiteHeader() {
@@ -38,9 +58,21 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center space-x-2 sm:space-x-4">
+          {socialLinks.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground hover:text-foreground hidden sm:block"
+            >
+              {social.icon}
+              <span className="sr-only">{social.label}</span>
+            </a>
+          ))}
           <ModeToggle />
           {/* Mobile navigation - hidden on desktop */}
-          <MobileNav items={mobileNavItems} />
+          <MobileNav items={mobileNavItems} socials={socialLinks} />
         </div>
       </div>
     </header>
