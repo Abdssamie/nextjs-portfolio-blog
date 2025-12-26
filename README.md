@@ -6,7 +6,10 @@
   <p align="center">
     A high-performance, developer-focused portfolio and blog built with the bleeding edge of the React ecosystem.
     <br />
-    <a href="https://nextjs-portfolio-blog-one.vercel.app/"><strong>View Live Demo »</strong></a>
+    <br />
+    <a href="https://nextjs-portfolio-blog-one.vercel.app/">
+      <img src="https://img.shields.io/badge/View_Live_Demo-2ea44f?style=for-the-badge&logo=vercel&logoColor=white" alt="View Live Demo" />
+    </a>
     <br />
     <br />
     <a href="https://github.com/Abdssamie/nextjs-portfolio-blog/issues">Report Bug</a>
