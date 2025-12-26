@@ -12,9 +12,11 @@ import {
     SiPostgresql,
     SiDocker,
     SiGit,
-    SiVercel
+    SiVercel,
+    SiFastapi,
+    SiNeovim
 } from "react-icons/si";
-import { Server, Palette, Layers, Code2, Database, Cloud } from "lucide-react";
+import { Server, Palette, Layers, Code2, Database, Cloud, Sparkles, TrendingUp, Zap, Brain, Rocket } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
     "React": <SiReact className="w-4 h-4 text-[#61DAFB]" />,
@@ -35,6 +37,13 @@ const iconMap: Record<string, React.ReactNode> = {
     "Design": <Palette className="w-4 h-4 text-pink-500" />,
     "API": <Cloud className="w-4 h-4 text-blue-500" />,
     "Database": <Database className="w-4 h-4 text-green-500" />,
+    "FastAPI": <SiFastapi className="w-4 h-4 text-[#009688]" />,
+    "Neovim": <SiNeovim className="w-4 h-4 text-[#57A143]" />,
+    "Spirituality": <Sparkles className="w-4 h-4 text-purple-500" />,
+    "Self-improvement": <TrendingUp className="w-4 h-4 text-green-500" />,
+    "Productivity": <Zap className="w-4 h-4 text-orange-500" />,
+    "Mindset": <Brain className="w-4 h-4 text-blue-500" />,
+    "Growth": <Rocket className="w-4 h-4 text-indigo-500" />,
 };
 
 interface TopicsLineProps {

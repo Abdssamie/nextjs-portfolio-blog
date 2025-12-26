@@ -11,6 +11,7 @@ import {
     SiNodedotjs,
     SiGit,
     SiFastapi,
+    SiNeovim,
 } from "react-icons/si";
 
 const technologies = [
@@ -73,6 +74,12 @@ const technologies = [
         name: "Git",
         description: "Version control",
         span: "md:col-span-1",
+    },
+    {
+        icon: <SiNeovim className="text-[#57A143]" />,
+        name: "Neovim",
+        description: "Hyperextensible Vim-based text editor",
+        span: "md:col-span-2",
     },
 ];
 
