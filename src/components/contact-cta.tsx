@@ -1,25 +1,24 @@
 import React from "react";
-import { Mail, Linkedin, MessageCircle } from "lucide-react";
-import { SiGithub } from "react-icons/si";
+import { siteConfig } from "@/config/site";
 
 const socialLinks = [
     {
-        name: "Email",
-        href: "mailto:abdessamie.elmoubarki@gmail.com",
-        icon: Mail,
-        label: "Send me an email",
+        name: siteConfig.social.email.label,
+        href: siteConfig.social.email.href,
+        icon: siteConfig.social.email.icon,
+        label: siteConfig.social.email.ctaLabel,
     },
     {
-        name: "GitHub",
-        href: "https://github.com/Abdssamie",
-        icon: SiGithub,
-        label: "Check my code",
+        name: siteConfig.social.github.label,
+        href: siteConfig.social.github.href,
+        icon: siteConfig.social.github.icon,
+        label: siteConfig.social.github.ctaLabel,
     },
     {
-        name: "LinkedIn",
-        href: "https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/",
-        icon: Linkedin,
-        label: "Connect professionally",
+        name: siteConfig.social.linkedin.label,
+        href: siteConfig.social.linkedin.href,
+        icon: siteConfig.social.linkedin.icon,
+        label: siteConfig.social.linkedin.ctaLabel,
     },
 ];
 
@@ -30,14 +29,13 @@ export function ContactCTA() {
                 {/* Main CTA */}
                 <div className="mb-12">
                     <div className="inline-flex items-center justify-center rounded-full bg-primary/10 p-4 mb-6">
-                        <MessageCircle className="h-8 w-8 text-primary" />
+                        <siteConfig.contact.ctaIcon className="h-8 w-8 text-primary" />
                     </div>
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-                        Let&apos;s Build Something Together
+                        {siteConfig.contact.title}
                     </h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Have a project in mind? Need help automating your workflows or building
-                        internal tools? I&apos;d love to hear from you.
+                        {siteConfig.contact.description}
                     </p>
                 </div>
 
@@ -64,7 +62,7 @@ export function ContactCTA() {
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                     </span>
                     <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
-                        Available for new projects
+                        {siteConfig.contact.availability}
                     </span>
                 </div>
             </div>

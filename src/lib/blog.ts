@@ -1,116 +1,40 @@
-import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import readingTime from "reading-time";
+import { getAllItems, getItemBySlug, getAllSlugs as getSlugs, extractToc as extractTocUtil, TocItem, MdxItem, MdxItemMeta } from "./mdx";
 
 const contentDirectory = path.join(process.cwd(), "content/blog");
 
-export interface BlogPost {
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
+export interface BlogPost extends MdxItem {
     author: string;
     image?: string;
     tags?: string[];
-    readingTime: string;
-    content: string;
 }
 
-export interface BlogPostMeta {
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
+export interface BlogPostMeta extends MdxItemMeta {
     author: string;
     image?: string;
     tags?: string[];
-    readingTime: string;
 }
+
+const blogFieldMapper = (data: Record<string, unknown>) => ({
+    author: (data.author as string) || "Anonymous",
+    image: (data.image as string) || undefined,
+    tags: (data.tags as string[]) || undefined,
+});
 
 export function getAllPosts(): BlogPostMeta[] {
-    if (!fs.existsSync(contentDirectory)) {
-        return [];
-    }
-
-    const files = fs.readdirSync(contentDirectory);
-
-    const posts = files
-        .filter((file) => file.endsWith(".mdx"))
-        .map((file) => {
-            const slug = file.replace(/\.mdx$/, "");
-            const filePath = path.join(contentDirectory, file);
-            const fileContents = fs.readFileSync(filePath, "utf8");
-            const { data, content } = matter(fileContents);
-
-            return {
-                slug,
-                title: data.title || slug,
-                description: data.description || "",
-                date: data.date || "",
-                author: data.author || "Anonymous",
-                image: data.image || undefined,
-                tags: data.tags || undefined,
-                readingTime: readingTime(content).text,
-            };
-        })
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-    return posts;
+    return getAllItems<BlogPostMeta>(contentDirectory, blogFieldMapper);
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
-    const filePath = path.join(contentDirectory, `${slug}.mdx`);
-
-    if (!fs.existsSync(filePath)) {
-        return null;
-    }
-
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-        slug,
-        title: data.title || slug,
-        description: data.description || "",
-        date: data.date || "",
-        author: data.author || "Anonymous",
-        image: data.image || undefined,
-        tags: data.tags || undefined,
-        readingTime: readingTime(content).text,
-        content,
-    };
+    return getItemBySlug<BlogPost>(contentDirectory, slug, blogFieldMapper);
 }
 
 export function getAllSlugs(): string[] {
-    if (!fs.existsSync(contentDirectory)) {
-        return [];
-    }
-
-    return fs
-        .readdirSync(contentDirectory)
-        .filter((file) => file.endsWith(".mdx"))
-        .map((file) => file.replace(/\.mdx$/, ""));
+    return getSlugs(contentDirectory);
 }
 
-export interface TocItem {
-    id: string;
-    text: string;
-    level: number;
-}
+export { type TocItem };
 
 export function extractToc(content: string): TocItem[] {
-    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
-    const toc: TocItem[] = [];
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-        const level = match[1].length;
-        const text = match[2];
-        const id = text.toLowerCase().replace(/\s+/g, "-");
-
-        toc.push({ id, text, level });
-    }
-
-    return toc;
+    return extractTocUtil(content);
 }
