@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://abdessamie.dev/sitemap.xml
+
+# Disallow admin/api paths if any
+Disallow: /api/

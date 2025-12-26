@@ -1,0 +1,72 @@
+---
+title: "Tailwind CSS v4 is Here"
+description: "Exploring the new CSS engine and what's changed in Tailwind CSS version 4."
+date: "2024-02-01"
+author: "Abdessamie"
+image: "/blog/tailwind-v4.jpg"
+tags: ["Tailwind", "CSS", "Frontend", "Design"]
+---
+
+# Tailwind CSS v4 is Here
+
+Tailwind CSS v4 brings a completely rewritten engine and some exciting new features. Let's explore what's new.
+
+## The New CSS Engine
+
+Tailwind v4 introduces a new high-performance engine written from scratch. It's faster, smaller, and more powerful.
+
+### Performance Improvements
+
+- **10x faster** build times in development
+- **Smaller CSS output** with better tree-shaking
+- **Instant hot reloading** in dev mode
+
+## New Features
+
+### Native CSS Layers
+
+Tailwind v4 uses native CSS `@layer` for better cascade control:
+
+```css
+@layer base {
+  /* Base styles */
+}
+
+@layer components {
+  /* Component styles */
+}
+
+@layer utilities {
+  /* Utility styles */
+}
+```
+
+### Container Queries
+
+Built-in support for container queries without plugins:
+
+```html
+<div class="@container">
+  <div class="@lg:flex @lg:gap-4">
+    <!-- Responsive to container, not viewport -->
+  </div>
+</div>
+```
+
+### New Color System
+
+The color palette has been expanded with OKLCH colors for better perceptual uniformity.
+
+## Migration Guide
+
+Upgrading from v3? Here's what you need to know:
+
+1. Update your config file format
+2. Review deprecated utilities
+3. Test your existing styles
+
+## Conclusion
+
+Tailwind v4 is a significant upgrade that makes the framework faster and more capable. The new engine provides a solid foundation for future features.
+
+Start experimenting with v4 today!
