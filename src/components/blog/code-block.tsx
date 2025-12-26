@@ -1,7 +1,6 @@
 "use client";
 
 import { Highlight, themes } from "prism-react-renderer";
-import { useTheme } from "@/lib/providers/themer-provider";
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 
@@ -11,10 +10,11 @@ interface CodeBlockProps {
 }
 
 export function CodeBlock({ children, language = "typescript" }: CodeBlockProps) {
-    const { resolvedTheme } = useTheme();
     const [copied, setCopied] = useState(false);
 
-    const theme = resolvedTheme === "dark" ? themes.nightOwl : themes.nightOwlLight;
+    // Use consistent theme to prevent hydration mismatch
+    // The bg-card class will handle light/dark background
+    const theme = themes.nightOwl;
 
     const handleCopy = async () => {
         await navigator.clipboard.writeText(children.trim());
@@ -43,8 +43,8 @@ export function CodeBlock({ children, language = "typescript" }: CodeBlockProps)
             <Highlight theme={theme} code={children.trim()} language={language}>
                 {({ className, style, tokens, getLineProps, getTokenProps }) => (
                     <pre
-                        className={`${className} overflow-x-auto rounded-xl border p-4 pt-10 text-sm`}
-                        style={{ ...style, backgroundColor: "transparent" }}
+                        className={`${className} overflow-x-auto rounded-xl border border-slate-700 bg-slate-900 p-4 pt-10 text-sm`}
+                        style={{ ...style, backgroundColor: undefined }}
                     >
                         <code className="block min-w-max">
                             {tokens.map((line, i) => (

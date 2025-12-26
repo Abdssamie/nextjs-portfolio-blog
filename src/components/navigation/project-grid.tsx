@@ -1,7 +1,6 @@
 import { Project } from "@/types";
 import Image from "next/image";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
-import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
 interface ProjectGridProps {
@@ -55,8 +54,7 @@ export function ProjectGrid({ projects, useNavigationMenuLink = true }: ProjectG
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
                   <div className="relative z-20 p-6 text-white">
-                    <BookOpen className="h-6 w-6" />
-                    <div className="mb-2 mt-4 text-lg font-medium">{project.title}</div>
+                    <div className="mb-2 text-lg font-medium">{project.title}</div>
                     <p className="text-sm leading-tight text-gray-200">
                       {project.description}
                     </p>

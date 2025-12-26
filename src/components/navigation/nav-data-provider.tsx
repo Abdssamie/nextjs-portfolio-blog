@@ -27,15 +27,41 @@ function transformBlogsForNav(posts: ReturnType<typeof getAllPosts>): Blog[] {
 }
 
 /**
+ * Placeholder projects used when fewer than 3 real projects exist
+ */
+const placeholderProjects: Project[] = [
+    {
+        title: "Coming Soon",
+        href: "/projects",
+        description: "New project in development. Stay tuned for updates!",
+        image: "/og-image.png",
+    },
+    {
+        title: "More Projects",
+        href: "/projects",
+        description: "Check back soon for more exciting projects and builds.",
+        image: "/og-image.png",
+    },
+];
+
+/**
  * Transforms MDX projects to the navigation Project format
+ * Pads with placeholder projects if fewer than 3 exist
  */
 function transformProjectsForNav(projects: ReturnType<typeof getAllProjects>): Project[] {
-    return projects.slice(0, 3).map((project) => ({
+    const realProjects = projects.slice(0, 3).map((project) => ({
         title: project.title,
         href: `/projects/${project.slug}`,
         description: project.description,
-        image: project.image || "/next.svg",
+        image: project.image || "/og-image.png",
     }));
+
+    // Pad with placeholders if fewer than 3 real projects
+    while (realProjects.length < 3) {
+        realProjects.push(placeholderProjects[realProjects.length - 1] || placeholderProjects[0]);
+    }
+
+    return realProjects;
 }
 
 export function NavigationDataProvider() {

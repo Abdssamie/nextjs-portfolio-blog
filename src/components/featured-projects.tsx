@@ -45,12 +45,11 @@ export function FeaturedProjects() {
                             {/* Project Image */}
                             <div className="relative h-48 w-full overflow-hidden bg-muted">
                                 <Image
-                                    src={project.image || "/next.svg"}
+                                    src={project.image || "/og-image.png"}
                                     alt={project.title}
                                     fill
                                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                             </div>
 
                             {/* Content */}

@@ -106,7 +106,7 @@ export function ProjectLayout({
                                 href={demo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors shadow-sm"
                             >
                                 <ExternalLink className="h-4 w-4" />
                                 Live Demo
