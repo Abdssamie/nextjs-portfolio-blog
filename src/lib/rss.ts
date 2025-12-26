@@ -3,7 +3,7 @@ import RSS from "rss";
 import { getAllPosts } from "@/lib/blog";
 
 export async function generateRssFeed() {
-    const site_url = process.env.NEXT_PUBLIC_SITE_URL || "https://abdessamie.dev";
+    const site_url = process.env.NEXT_PUBLIC_SITE_URL || "https://nextjs-portfolio-blog-one.vercel.app";
     const allPosts = getAllPosts();
 
     const feedOptions = {

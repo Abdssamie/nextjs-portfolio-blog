@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://abdessamie.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://nextjs-portfolio-blog-one.vercel.app"),
   title: {
     default: "Abdessamie | Full Stack Developer & Automation Expert",
     template: "%s | Abdessamie",
