@@ -5,19 +5,19 @@ import { SiGithub } from "react-icons/si";
 const socialLinks = [
     {
         name: "Email",
-        href: "mailto:contact@abdessamie.com",
+        href: "mailto:abdessamie.elmoubarki@gmail.com",
         icon: Mail,
         label: "Send me an email",
     },
     {
         name: "GitHub",
-        href: "https://github.com/abdessamie",
+        href: "https://github.com/Abdssamie",
         icon: SiGithub,
         label: "Check my code",
     },
     {
         name: "LinkedIn",
-        href: "https://linkedin.com/in/abdessamie",
+        href: "https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/",
         icon: Linkedin,
         label: "Connect professionally",
     },
