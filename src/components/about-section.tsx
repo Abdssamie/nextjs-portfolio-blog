@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { siteConfig } from "@/config/site";
 
 export function AboutSection() {
     return (
@@ -15,8 +16,8 @@ export function AboutSection() {
                     <div className="mb-6 flex justify-center md:justify-start">
                         <div className="relative">
                             <Image
-                                src="/profile.jpeg"
-                                alt="Abdessamie"
+                                src={siteConfig.author.image}
+                                alt={siteConfig.author.name}
                                 width={100}
                                 height={100}
                                 className="rounded-full border-4 border-white shadow-lg dark:border-white/20"
@@ -25,28 +26,14 @@ export function AboutSection() {
                     </div>
 
                     <h2 className="mb-6 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
-                        Hi, I&apos;m Abdessamie.{" "}
+                        Hi, I&apos;m {siteConfig.author.name}.{" "}
                         <span className="text-slate-500 dark:text-white/70">Nice to meet you.</span>
                     </h2>
 
                     <div className="space-y-4 text-base leading-relaxed text-slate-600 dark:text-white/80 sm:text-lg md:text-xl">
-                        <p>
-                            I specialize in building <strong className="text-slate-900 dark:text-white">automation systems</strong> and helping businesses
-                            create powerful <strong className="text-slate-900 dark:text-white">internal tools</strong> that streamline their operations.
-                            From client-facing applications to back-office workflows, I turn complex manual processes into
-                            elegant, automated solutions.
-                        </p>
-
-                        <p>
-                            Whether it&apos;s integrating APIs, building custom dashboards, or designing systems that
-                            scale with your business—I&apos;m passionate about creating technology that works
-                            <em> for </em> you, not the other way around.
-                        </p>
-
-                        <p>
-                            I&apos;m naturally curious, quietly confident, and always exploring new ways to make
-                            businesses more efficient through thoughtful automation and clean code.
-                        </p>
+                        {siteConfig.author.bioParts.map((part, index) => (
+                            <p key={index} dangerouslySetInnerHTML={{ __html: part }} />
+                        ))}
                     </div>
                 </div>
             </div>

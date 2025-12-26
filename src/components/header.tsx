@@ -3,37 +3,32 @@ import { MobileNav } from "./navigation/mobile-nav";
 import { ModeToggle } from "./theme-toggle";
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin } from "lucide-react";
-import { SiGithub, SiX } from "react-icons/si";
+import { siteConfig } from "@/config/site";
 
 /**
  * Site Header Component
- * 
+ *
  * Renders the sticky header with logo, navigation menu, and theme toggle.
  * Uses NavigationDataProvider for desktop and MobileNav for small screens.
  */
 
-const mobileNavItems = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
-];
+const mobileNavItems = siteConfig.nav;
 
 const socialLinks = [
   {
-    label: "GitHub",
-    href: "https://github.com/Abdssamie",
-    icon: <SiGithub className="h-5 w-5" />,
+    label: siteConfig.social.github.label,
+    href: siteConfig.social.github.href,
+    icon: <siteConfig.social.github.icon className="h-5 w-5" />,
   },
   {
-    label: "X",
-    href: "https://x.com",
-    icon: <SiX className="h-5 w-5" />,
+    label: siteConfig.social.x.label,
+    href: siteConfig.social.x.href,
+    icon: <siteConfig.social.x.icon className="h-5 w-5" />,
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/",
-    icon: <Linkedin className="h-5 w-5" />,
+    label: siteConfig.social.linkedin.label,
+    href: siteConfig.social.linkedin.href,
+    icon: <siteConfig.social.linkedin.icon className="h-5 w-5" />,
   },
 ];
 
@@ -44,12 +39,12 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
           <Image
             src="/abdessamie-personal-logo.png"
-            alt="Abdessamie"
+            alt={siteConfig.name}
             width={36}
             height={36}
             className="h-8 w-8 rounded-full sm:h-9 sm:w-9"
           />
-          <span className="text-lg font-bold tracking-tight sm:text-xl">Abdessamie</span>
+          <span className="text-lg font-bold tracking-tight sm:text-xl">{siteConfig.name}</span>
         </Link>
 
         {/* Desktop navigation - hidden on mobile */}
