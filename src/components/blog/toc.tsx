@@ -24,17 +24,18 @@ export function TableOfContents({ items }: TableOfContentsProps) {
             }
         }
 
-        if (currentActiveId !== activeId) {
-            setActiveId(currentActiveId);
-        }
-    }, [items, activeId]);
+        setActiveId((prev) => (prev !== currentActiveId ? currentActiveId : prev));
+    }, [items]);
 
     useEffect(() => {
-        // Initial check
-        handleScroll();
+        // Initial check - async to avoid synchronous set state warning
+        const rafId = requestAnimationFrame(handleScroll);
 
         window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            cancelAnimationFrame(rafId);
+        };
     }, [handleScroll]);
 
     if (items.length === 0) {
@@ -63,8 +64,8 @@ export function TableOfContents({ items }: TableOfContentsProps) {
                                 }
                             }}
                             className={`block py-1.5 transition-all duration-200 hover:text-foreground border-l-2 -ml-[2px] ${activeId === item.id
-                                    ? "border-primary text-primary font-medium bg-primary/5"
-                                    : "border-transparent text-muted-foreground hover:border-muted-foreground/50"
+                                ? "border-primary text-primary font-medium bg-primary/5"
+                                : "border-transparent text-muted-foreground hover:border-muted-foreground/50"
                                 }`}
                             style={{
                                 paddingLeft: `${(item.level - 1) * 12 + 12}px`,

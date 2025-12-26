@@ -7,10 +7,9 @@ import { ProjectSection } from "@/lib/projects";
 
 interface ProjectCarouselProps {
     sections: ProjectSection[];
-    projectTitle: string;
 }
 
-export function ProjectCarousel({ sections, projectTitle }: ProjectCarouselProps) {
+export function ProjectCarousel({ sections }: ProjectCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
