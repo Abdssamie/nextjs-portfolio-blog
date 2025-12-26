@@ -4,12 +4,12 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export function ProjectsLottieAnimation() {
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-full max-w-[350px]">
             <DotLottieReact
                 src="/Animated Dashboards.lottie"
                 loop
                 autoplay
-                style={{ width: "350px", height: "350px" }}
+                style={{ width: "100%", height: "auto" }}
             />
         </div>
     );
