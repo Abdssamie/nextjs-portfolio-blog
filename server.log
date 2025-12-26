@@ -1,0 +1,16 @@
+
+> my-blog@0.1.0 dev /app
+> next dev
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+✓ Ready in 1062ms
+○ Compiling /card-demo ...
+ GET /card-demo 200 in 3.8s (compile: 3.5s, render: 315ms)
+ GET /card-demo 200 in 136ms (compile: 6ms, render: 130ms)
+ GET /card-demo 200 in 91ms (compile: 5ms, render: 86ms)
+ GET /card-demo 200 in 96ms (compile: 3ms, render: 93ms)
+ GET /card-demo 200 in 95ms (compile: 4ms, render: 91ms)
