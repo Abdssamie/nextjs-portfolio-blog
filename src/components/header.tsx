@@ -19,6 +19,24 @@ const mobileNavItems = [
   { label: "Blog", href: "/blog" },
 ];
 
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/Abdssamie",
+    icon: <SiGithub className="h-5 w-5" />,
+  },
+  {
+    label: "X",
+    href: "https://x.com",
+    icon: <SiX className="h-5 w-5" />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/",
+    icon: <Linkedin className="h-5 w-5" />,
+  },
+];
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-xs supports-backdrop-filter:bg-background/60">
@@ -40,36 +58,21 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center space-x-2 sm:space-x-4">
-          <a
-            href="https://github.com/Abdssamie"
-            target="_blank"
-            rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground hidden sm:block"
-          >
-            <SiGithub className="h-5 w-5" />
-            <span className="sr-only">GitHub</span>
-          </a>
-          <a
-            href="https://x.com"
-            target="_blank"
-            rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground hidden sm:block"
-          >
-            <SiX className="h-5 w-5" />
-            <span className="sr-only">X</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/abdessamaie-el-moubarki-406296310/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground hidden sm:block"
-          >
-            <Linkedin className="h-5 w-5" />
-            <span className="sr-only">LinkedIn</span>
-          </a>
+          {socialLinks.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground hover:text-foreground hidden sm:block"
+            >
+              {social.icon}
+              <span className="sr-only">{social.label}</span>
+            </a>
+          ))}
           <ModeToggle />
           {/* Mobile navigation - hidden on desktop */}
-          <MobileNav items={mobileNavItems} />
+          <MobileNav items={mobileNavItems} socials={socialLinks} />
         </div>
       </div>
     </header>

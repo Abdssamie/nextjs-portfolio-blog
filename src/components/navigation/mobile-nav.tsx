@@ -6,9 +6,10 @@ import { Menu, X } from "lucide-react";
 
 interface MobileNavProps {
     items: { label: string; href: string }[];
+    socials?: { label: string; href: string; icon: React.ReactNode }[];
 }
 
-export function MobileNav({ items }: MobileNavProps) {
+export function MobileNav({ items, socials }: MobileNavProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -46,6 +47,22 @@ export function MobileNav({ items }: MobileNavProps) {
                                 </li>
                             ))}
                         </ul>
+                        {socials && socials.length > 0 && (
+                            <div className="mt-4 flex items-center gap-4 px-4 pt-4 border-t">
+                                {socials.map((social) => (
+                                    <a
+                                        key={social.label}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="text-muted-foreground hover:text-foreground transition-colors"
+                                        aria-label={social.label}
+                                    >
+                                        {social.icon}
+                                    </a>
+                                ))}
+                            </div>
+                        )}
                     </nav>
                 </>
             )}
