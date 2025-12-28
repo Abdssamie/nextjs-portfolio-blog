@@ -1,0 +1,51 @@
+---
+title: "Using React Portals for Drag & Drop UI"
+description: "Learning about createPortal to build detachable panels and draggable elements in my video editor."
+date: "2025-12-28"
+author: "Abdessamie"
+readingTime: "4 min read"
+image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=1200"
+tags: ["React", "Portals", "UI/UX", "Frontend"]
+---
+
+# Using React Portals for Drag & Drop UI
+
+Today I learned about a powerful feature in React that solves a very specific problem I've been facing in my Open Source Video Editor project: `ReactDOM.createPortal`.
+
+## The Problem: Stacking Contexts
+
+In a complex video editor UI, you have a Timeline, a Canvas, and various Sidebar panels. When implementing drag-and-drop, you often run into `z-index` and `overflow: hidden` issues.
+
+If I try to drag an element out of the Sidebar and onto the Canvas, but the Sidebar has `overflow: hidden` (to handle scrolling), the dragged element will be clipped. It visually "disappears" as it leaves the Sidebar.
+
+## The Solution: Portals
+
+`createPortal` allows you to render a child component into a DOM node that exists outside the DOM hierarchy of the parent component.
+
+```tsx
+import { createPortal } from 'react-dom';
+
+function DraggableOverlay({ children }) {
+  // Render into the document body, breaking out of any parent overflow
+  return createPortal(
+    <div className="fixed z-50 pointer-events-none">
+      {children}
+    </div>,
+    document.body
+  );
+}
+```
+
+## Application in the Video Editor
+
+I plan to use this for three key features:
+
+1. **Draggable Assets**: When a user drags a video clip from the asset library, the "ghost" image will be rendered in a Portal. This ensures it floats above everything else—Timeline, Canvas, Headers—regardless of the nesting or z-index of those containers.
+
+2. **Detachable Panels**: I can create a "Picture-in-Picture" mode for the preview player. By toggling a state, I can move the Player component into a Portal rooted at `document.body`, effectively detaching it from the layout grid and making it a floating window.
+
+3. **Context Menus**: Custom right-click menus often get clipped by their parent containers. Portals ensure they always render on top and are positioned relative to the viewport.
+
+## Conclusion
+
+Portals are an escape hatch from the strict DOM hierarchy. While they should be used sparingly to avoid event bubbling confusion, they are the perfect tool for overlays, modals, and complex drag-and-drop interactions.

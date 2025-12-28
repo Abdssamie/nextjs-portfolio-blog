@@ -1,0 +1,65 @@
+---
+title: "Open Source Video Editor"
+description: "A full-stack video editor built with React, Remotion, and AWS Lambda for generating educational video templates and social media shorts."
+date: "2025-12-28"
+image: "https://images.unsplash.com/photo-1574717025179-0b6d03d4d86f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWRvYmUlMjBwcmVtaWVyZSUyMHBybyUyMHRpbWVsaW5lfGVufDB8fDB8fHww"
+tags: ["Next.js", "Remotion", "AWS Lambda", "Tailwind CSS", "Zustand"]
+github: "https://github.com/yourusername/react-video-editor"
+demo: "https://your-video-editor-demo.com"
+sections:
+  - image: "https://images.unsplash.com/photo-1585076641399-5c06d1b3365f?auto=format&fit=crop&q=80&w=800"
+    title: "Timeline & Canvas"
+    description: "A drag-and-drop timeline interface for sequencing video, image, and text assets, coupled with a real-time canvas preview."
+  - image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
+    title: "Cloud Rendering"
+    description: "Serverless rendering pipeline powered by AWS Lambda and Remotion, enabling scalable video generation in the cloud."
+---
+
+# Open Source Video Editor
+
+This project is a React + Remotion + AWS Lambda video editor MVP built from scratch. It allows users to create educational video templates or product showcase shorts for social media, with a focus on reusable JSON-based templates.
+
+## Project Goals
+
+The primary goal was to master full-stack complex state management and cloud rendering by building a tool that generates video content programmatically.
+
+- **Frontend**: Next.js (App Router), React, Tailwind CSS
+- **Video Engine**: Remotion
+- **State Management**: Zustand
+- **Cloud Infrastructure**: AWS Lambda
+
+## Features
+
+### 1. Timeline Interface
+A robust timeline allows users to visualize tracks and items. Features include:
+- **Drag & Drop**: Move items in time across different tracks.
+- **Resizing**: Trim the start and end of video or audio clips.
+- **Multi-track support**: Layer videos, images, and text.
+
+### 2. Canvas Manipulation
+The preview canvas supports direct manipulation of elements:
+- **Move & Scale**: Position and resize elements directly on the video preview.
+- **Real-time Preview**: Instant feedback using the Remotion Player.
+
+### 3. Cloud Rendering
+Decoupled rendering logic allows for high-performance video generation:
+- **Headless Composition**: Logic separated from UI state for server-side rendering.
+- **AWS Lambda**: Scalable parallel rendering using `@remotion/lambda`.
+
+## Architecture
+
+### Phase 1: Foundation
+Initialized with Next.js App Router and configured the Remotion player. Established the basic layout with Tailwind CSS and set up Zustand for global state management.
+
+### Phase 2: Core State
+Designed a data model to track items (Video, Image, Text), their positions, and durations. Connected the Zustand store to the Remotion `<Player>` to drive the composition.
+
+### Phase 3: Interactivity
+Implemented complex interactions like drag-and-drop on the timeline and canvas manipulation. This involved calculating time-to-pixel ratios and handling various edge cases for smooth UX.
+
+### Phase 4: Cloud Rendering
+Set up the rendering pipeline. Created a Next.js API route to trigger renders via AWS Lambda, passing the JSON composition data to the headless renderer.
+
+## Usage
+
+The editor exports a JSON representation of the video, including all assets and text. This JSON can be stored and reused to generate new variations of the video programmatically, making it perfect for template-based content creation.
