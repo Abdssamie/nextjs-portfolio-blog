@@ -1,0 +1,43 @@
+---
+title: "Why I Committed to the T3 Stack + FastAPI"
+description: "How choosing a robust, type-safe stack helps me ship products faster and with more confidence."
+date: "2024-05-21"
+author: "Abdessamie"
+readingTime: "5 min read"
+image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1200"
+tags: ["React", "Next.js", "TypeScript", "FastAPI", "Postgres"]
+---
+
+# Why I Committed to the T3 Stack + FastAPI
+
+In the ever-evolving world of web development, "shiny object syndrome" is a real threat to productivity. Every week, a new framework or library promises to revolutionize how we build apps. After years of experimenting, I've decided to double down on a specific stack: **React, Next.js, TypeScript, PostgreSQL, and FastAPI**.
+
+Here is why I believe this combination is the ultimate "Go-to-Market" stack.
+
+## 1. Type Safety is Non-Negotiable
+
+TypeScript has moved from a "nice-to-have" to an absolute necessity. The ability to catch errors at compile time rather than runtime saves countless hours of debugging.
+
+When you combine TypeScript on the frontend with Python (via Pydantic) on the backend, you get a robust contract between your client and server. Tools like **OpenAPI** (Swagger) automatically generate client SDKs, ensuring that if your backend changes, your frontend knows about it immediately.
+
+## 2. Next.js: The Standard for React
+
+Next.js provides the framework that React was missing. The App Router, while having a learning curve, offers powerful patterns for data fetching and layout management.
+
+- **Server Components**: Fetch data where it's needed, reducing client-side bundle sizes.
+- **Routing**: File-system based routing is intuitive and fast.
+- **Vercel Integration**: Deployment is literally a git push away.
+
+## 3. FastAPI: Speed and Simplicity
+
+While I love TypeScript, Python's ecosystem for data science and AI is unmatched. **FastAPI** bridges the gap. It's incredibly fast (comparable to Go/Node.js thanks to Starlette), and its automatic documentation generation is a productivity booster.
+
+Using FastAPI allows me to easily integrate AI/ML models into my backend logic without context switching languages.
+
+## 4. PostgreSQL: Boring is Good
+
+When it comes to your database, you want "boring" technology. PostgreSQL is rock-solid, ACID compliant, and supports JSONB, effectively giving you NoSQL capabilities when you need them, without sacrificing relational integrity.
+
+## Conclusion
+
+By committing to this stack, I've stopped asking "what tool should I use?" and started focusing on "what problem am I solving?". This focus allows me to move faster, build higher-quality software, and actually ship products to market.
