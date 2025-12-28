@@ -1,0 +1,63 @@
+---
+title: "Why I Switched from Prisma to Drizzle"
+description: "A journey from Prisma's heavy engine to Drizzle's lightweight speed, and solving Vercel cold start errors."
+date: "2025-12-28"
+author: "Abdessamie"
+readingTime: "6 min read"
+image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=1200"
+tags: ["Prisma", "Drizzle", "Database", "TypeScript", "Performance"]
+---
+
+# Why I Switched from Prisma to Drizzle
+
+For a long time, Prisma was my default ORM. It transformed the way I interacted with databases in TypeScript. The developer experience (DX) was unmatched—autocompletion, type safety, and a schema definition language (SDL) that made modeling relationships intuitive.
+
+But as my applications grew, and specifically when I started deploying to serverless environments like Vercel, cracks started to appear. This is the story of why I migrated to Drizzle ORM.
+
+## The Problem: The "Engine" and Cold Starts
+
+Prisma relies on a Rust binary (the Query Engine) to handle database interactions. While powerful, this binary is heavy.
+
+1.  **Bundle Size**: Including the Rust binary significantly increases the size of serverless functions.
+2.  **Cold Starts**: Initializing this binary takes time. On a standard Vercel serverless function, I was seeing cold starts of 1-3 seconds.
+3.  **The "Engine" Errors**: I frequently encountered cryptic errors related to the engine crashing or failing to spawn, especially under concurrent load or in constrained environments. "Error: P1001" and connection pool exhaustion became common nightmares.
+
+## Enter Drizzle ORM
+
+I started hearing about Drizzle—a "TypeScript SQL ORM" that claimed to be lighter and faster. I was skeptical, but the promise of "zero runtime dependencies" was too good to ignore.
+
+### 1. No Heavy Binary
+
+Drizzle is just a TypeScript library. There is no separate binary to spawn. It generates SQL strings and sends them to your database driver. This reduced my cold start times drastically, often to under 300ms.
+
+### 2. SQL-Like Syntax
+
+Prisma creates an abstraction layer that sometimes hides what's actually happening in the DB. Drizzle embraces SQL.
+
+```typescript
+// Prisma
+const user = await prisma.user.findFirst({
+  where: { id: 1 },
+  include: { posts: true }
+});
+
+// Drizzle
+const result = await db.select().from(users).where(eq(users.id, 1));
+```
+
+Writing Drizzle feels closer to writing SQL, which gave me more confidence that my queries were efficient.
+
+### 3. Migration Experience
+
+Migrating wasn't instant, but it was straightforward.
+1.  **Introspection**: `drizzle-kit introspect` read my existing database schema and generated the Drizzle schema file.
+2.  **Refactoring**: I had to rewrite my queries. This took time, but it highlighted several inefficient queries I had unknowingly written with Prisma.
+
+## The Result
+
+Since switching to Drizzle:
+- **Performance**: My Vercel API routes are snappy. The "engine" errors are gone.
+- **Confidence**: I understand exactly what SQL is being executed.
+- **Type Safety**: The type inference is just as good, if not better, than Prisma's.
+
+Prisma is still a fantastic tool, especially for its migrations and admin studio. But for serverless runtimes where every millisecond counts, Drizzle is now my go-to choice.
