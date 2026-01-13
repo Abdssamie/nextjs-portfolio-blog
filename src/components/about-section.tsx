@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import DOMPurify from "isomorphic-dompurify";
 import { siteConfig } from "@/config/site";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 export function AboutSection() {
     return (
@@ -27,7 +28,12 @@ export function AboutSection() {
                     </div>
 
                     <h2 className="mb-6 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
-                        Hi, I&apos;m {siteConfig.author.name}.{" "}
+                        <AnimatedText
+                            text={`Hi, I'm ${siteConfig.author.name}.`}
+                            animation="six"
+                            as="span"
+                            className="mr-2 inline-block"
+                        />
                         <span className="text-slate-500 dark:text-white/70">Nice to meet you.</span>
                     </h2>
 

@@ -15,6 +15,7 @@ import {
     SiLinear,
     SiGithub,
 } from "react-icons/si";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 const technologies = [
     {
@@ -102,7 +103,7 @@ export function TechStackSection() {
         <section className="container mx-auto py-16 px-4">
             <div className="mb-12 text-center">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                    Tech Stack
+                    <AnimatedText text="Tech Stack" animation="three" />
                 </h2>
                 <p className="mt-3 text-lg text-muted-foreground">
                     Technologies I work with daily to build scalable applications.
