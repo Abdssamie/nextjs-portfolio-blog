@@ -1,11 +1,17 @@
 import React from "react";
 import { siteConfig } from "@/config/site";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 export function Hero() {
   return (
     <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center py-24 text-center">
       <h1 className="flex flex-col items-center text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-        <span className="mb-4">{siteConfig.hero.titlePrefix}</span>
+        <AnimatedText
+          text={siteConfig.hero.titlePrefix}
+          className="mb-4"
+          animation="seven"
+          as="span"
+        />
         <div className="relative h-12 overflow-hidden sm:h-16 md:h-20 lg:h-24">
           <ul className="animate-flip text-primary flex flex-col items-center">
             {siteConfig.hero.skills.map((skill, index) => (
@@ -17,7 +23,13 @@ export function Hero() {
             ))}
           </ul>
         </div>
-        <span className="mt-4">{siteConfig.hero.titleSuffix}</span>
+        <AnimatedText
+          text={siteConfig.hero.titleSuffix}
+          className="mt-4"
+          animation="seven"
+          as="span"
+          startDelay={1}
+        />
       </h1>
       
       <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground sm:text-xl">

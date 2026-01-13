@@ -8,6 +8,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 export function FeaturedProjects() {
     const allProjects = getAllProjects();
@@ -28,7 +29,7 @@ export function FeaturedProjects() {
             <div className="relative container mx-auto max-w-6xl">
                 <div className="mb-12 text-center">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                        Featured Projects
+                        <AnimatedText text="Featured Projects" animation="four" />
                     </h2>
                     <p className="mt-3 text-lg text-muted-foreground">
                         Some of the things I&apos;ve built recently.

@@ -1,5 +1,6 @@
 import React from "react";
 import { siteConfig } from "@/config/site";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 const socialLinks = [
     {
@@ -32,7 +33,7 @@ export function ContactCTA() {
                         <siteConfig.contact.ctaIcon className="h-8 w-8 text-primary" />
                     </div>
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-                        {siteConfig.contact.title}
+                        <AnimatedText text={siteConfig.contact.title} animation="one" />
                     </h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
                         {siteConfig.contact.description}
