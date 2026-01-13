@@ -3,7 +3,7 @@ title: "Learning Go: My Weekend Deep Dive"
 description: "From the official tour to building concurrent backends—my journey into Go (Golang) and why I'm using it for my next SaaS IIoT project."
 date: "2026-01-13"
 author: "Abdessamie"
-readingTime: "6 min read"
+readingTime: "12 min read"
 image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=1200"
 tags: ["Go", "Golang", "IoT", "Backend", "Concurrency"]
 ---
@@ -18,48 +18,113 @@ Last weekend, I decided to step out of my comfort zone and dive into **Go** (Gol
 
 ## The Learning Path: The Official Go Tour
 
-I started where most Gophers begin: the [Official Go Tour](https://go.dev/tour/). It’s a fantastic, interactive way to get hands-on with the syntax immediately.
+I started where most Gophers begin: the [Official Go Tour](https://go.dev/tour/). It’s a fantastic, interactive way to get hands-on with the syntax immediately. But what really stuck with me was how Go compares to the languages I use daily: **TypeScript** and **Python**.
 
-### 1. The Basics
-Coming from a TypeScript/Python background, Go's strict typing and C-style syntax felt both familiar and refreshingly simple. I picked up:
-- **Variable declarations**: Explicit and inferred types.
-- **Control structures**: `if`, `for`, `switch`—and the lack of `while` (Go just uses `for`!).
-- **Pointers**: A blast from the past, but simplified compared to C/C++.
+### 1. The Basics: Go vs. Python & TypeScript
+Coming from a TypeScript/Python background, Go's strict typing and C-style syntax felt like a hybrid.
+
+- **Variables & Types**: unlike Python's dynamic typing, Go is statically typed like TypeScript. However, the type inference (`:=`) makes it feel almost as concise as Python.
+- **Compilation**: Go compiles directly to machine code. There's no VM like the JVM or interpreter like Python. This results in incredibly fast startup times—crucial for my IoT lambda functions.
+- **Loops**: Go has only one looping construct: `for`. No `while`, no `do-while`. You just use `for` in different ways. This minimalism is a stark contrast to the syntactic sugar I'm used to in JS/TS (like `.map`, `.filter`, `.reduce`), though Go is slowly adopting some of these functional patterns.
 
 ### 2. Structs, Methods, and Interfaces
-This is where Go gets interesting. It’s object-oriented but not in the traditional class-based sense.
-- **Structs**: Define data shapes.
-- **Methods**: Attach functions to structs (receivers).
-- **Interfaces**: Implicit implementation. If a type has the methods, it implements the interface. No `implements` keyword required.
+This is where Go gets interesting. It’s object-oriented but not in the traditional class-based sense I'm used to in Python or ES6 classes.
+
+- **Structs vs Classes**: In Python, I define a `class`. In Go, I define a `struct` to hold data. It feels very similar to a TypeScript `interface` or `type` definition, but it exists at runtime.
+- **Methods**: You don't put methods *inside* the struct. You define functions with a *receiver*. This decoupling of data and behavior was a paradigm shift.
+- **Implicit Interfaces**: In TypeScript, I might use `implements MyInterface`. In Go, there is no `implements` keyword. If a type has the methods defined in an interface, it implements it. Period. This "duck typing" at compile time is powerful but took a moment to grasp.
 
 ### 3. Generics
-I was glad to see Generics (introduced in Go 1.18) covered. Writing type-safe, reusable code without casting `interface{}` everywhere is a huge win for maintainability.
+I was glad to see Generics (introduced in Go 1.18) covered. In TypeScript, I abuse Generics to create reusable components. Go's implementation is stricter but solves the same problem: writing type-safe, reusable code without casting `interface{}` (Go's version of `any`) everywhere.
 
-## The Power of Concurrency
+## The Real Challenge: Building a Concurrent Web Crawler
 
-The real reason I chose Go for my IoT backend is its concurrency model. Handling thousands of device connections requires something lightweight and efficient.
+To really test my understanding, I decided to build a simple concurrent web crawler. I wanted to fetch a list of URLs in parallel.
 
-### Goroutines
-Instead of heavy OS threads, Go uses **Goroutines**. They are incredibly lightweight threads managed by the Go runtime. You can spin up thousands of them with just the `go` keyword.
+In **Python**, I would use `asyncio` or `threading` (battling the GIL). In **Node.js**, I'd rely on the event loop and `Promise.all`. In **Go**, I use **Goroutines**.
+
+### The Setup
+Here is the problem: safely crawling multiple URLs concurrently without visiting the same URL twice. This introduces a classic **Race Condition** if multiple goroutines try to write to the "visited" map at the same time.
+
+### The Solution: `sync.Mutex`
+
+To handle this, I used `sync.Mutex` to lock the shared resource (the map) during writes.
 
 ```go
-go doSomething() // Runs in a new goroutine
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+type SafeCounter struct {
+	mu sync.Mutex
+	v  map[string]bool
+}
+
+// Inc checks if a url has been visited.
+// If not, it marks it as visited and returns true.
+func (c *SafeCounter) Visit(key string) bool {
+	c.mu.Lock()
+	// Lock so only one goroutine at a time can access the map c.v.
+	defer c.mu.Unlock()
+
+	if c.v[key] {
+		return false
+	}
+	c.v[key] = true
+	return true
+}
+
+func Crawl(url string, c *SafeCounter, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	if !c.Visit(url) {
+		fmt.Printf("Skipping %s, already visited\n", url)
+		return
+	}
+
+	fmt.Printf("Crawling %s\n", url)
+	// Simulate network request
+	time.Sleep(100 * time.Millisecond)
+}
+
+func main() {
+	c := SafeCounter{v: make(map[string]bool)}
+	var wg sync.WaitGroup
+
+	urls := []string{
+		"http://golang.org/",
+		"http://google.com/",
+		"http://golang.org/", // Duplicate
+	}
+
+	for _, url := range urls {
+		wg.Add(1)
+		go Crawl(url, &c, &wg)
+	}
+
+	wg.Wait()
+}
 ```
 
-### Channels & Synchronization
-Communicating between these goroutines is elegant using **Channels**. They prevent race conditions by allowing safe data exchange.
-I also explored `sync.Mutex` for more traditional locking mechanisms when shared state is unavoidable.
+### Why this is different
+In **Node.js/JavaScript**, this race condition technically doesn't exist in the same way because user code runs on a single thread. You don't need a mutex for memory access, but you do need to manage asynchronous flow.
+
+In **Go**, these goroutines are running in parallel on multiple CPU cores. Without `c.mu.Lock()`, two goroutines could read `c.v[key]` as `false` simultaneously, and both would proceed to crawl the URL. The `Mutex` ensures that the critical section (checking and updating the map) is atomic.
 
 ## Why Go for my IIoT SaaS?
 
 My upcoming project involves handling real-time data from industrial sensors.
-1.  **Performance**: Compiled to machine code, fast startup, low memory footprint.
-2.  **Concurrency**: Perfect for handling multiple sensor streams simultaneously.
+1.  **True Concurrency**: Unlike Node's event loop, Go can utilize all CPU cores for heavy computation if needed.
+2.  **Performance**: Compiled to machine code, fast startup, low memory footprint.
 3.  **Simplicity**: Easy to read and maintain, which is crucial as the codebase grows.
 4.  **Deployment**: Single binary deployment. No "dependency hell" on the server.
 
 ## What's Next?
 
-Now that I have the basics down, I'm starting the implementation of the IoT backend. I'll be using standard libraries where possible and exploring the ecosystem for MQTT and WebSocket support.
+Now that I have the basics down and have built a thread-safe crawler, I'm starting the implementation of the IoT backend. I'll be using standard libraries where possible and exploring the ecosystem for MQTT and WebSocket support.
 
 Stay tuned for more updates as I build this out!
