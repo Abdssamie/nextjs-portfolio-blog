@@ -23,7 +23,13 @@ export function Hero() {
             ))}
           </ul>
         </div>
-        <span className="mt-4">{siteConfig.hero.titleSuffix}</span>
+        <AnimatedText
+          text={siteConfig.hero.titleSuffix}
+          className="mt-4"
+          animation="seven"
+          as="span"
+          startDelay={1}
+        />
       </h1>
       
       <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground sm:text-xl">

@@ -8,9 +8,10 @@ interface AnimatedTextProps {
   className?: string;
   animation?: 'one' | 'two' | 'three' | 'four' | 'six' | 'seven';
   as?: React.ElementType;
+  startDelay?: number;
 }
 
-export function AnimatedText({ text, className, animation = 'one', as: Component = 'div' }: AnimatedTextProps) {
+export function AnimatedText({ text, className, animation = 'one', as: Component = 'div', startDelay = 0 }: AnimatedTextProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -43,7 +44,7 @@ export function AnimatedText({ text, className, animation = 'one', as: Component
       {text.split('').map((char, index) => (
         <span
           key={index}
-          style={{ animationDelay: isVisible ? `${index * 0.05}s` : '0s' }}
+          style={{ animationDelay: isVisible ? `${startDelay + index * 0.05}s` : '0s' }}
           aria-hidden="true"
         >
           {char === ' ' ? '\u00A0' : char}
