@@ -1,0 +1,65 @@
+---
+title: "Learning Go: My Weekend Deep Dive"
+description: "From the official tour to building concurrent backends—my journey into Go (Golang) and why I'm using it for my next SaaS IIoT project."
+date: "2026-01-13"
+author: "Abdessamie"
+readingTime: "6 min read"
+image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=1200"
+tags: ["Go", "Golang", "IoT", "Backend", "Concurrency"]
+---
+
+Last weekend, I decided to step out of my comfort zone and dive into **Go** (Golang). As I prepare to build the backend for my new **SaaS IIoT (Industrial Internet of Things)** project, I needed a language that could handle high concurrency and provide robust performance without the overhead of heavier runtimes. Go seemed like the perfect candidate.
+
+<img
+  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200"
+  alt="Coding on a laptop"
+  className="rounded-lg border border-slate-200 dark:border-slate-800 my-8"
+/>
+
+## The Learning Path: The Official Go Tour
+
+I started where most Gophers begin: the [Official Go Tour](https://go.dev/tour/). It’s a fantastic, interactive way to get hands-on with the syntax immediately.
+
+### 1. The Basics
+Coming from a TypeScript/Python background, Go's strict typing and C-style syntax felt both familiar and refreshingly simple. I picked up:
+- **Variable declarations**: Explicit and inferred types.
+- **Control structures**: `if`, `for`, `switch`—and the lack of `while` (Go just uses `for`!).
+- **Pointers**: A blast from the past, but simplified compared to C/C++.
+
+### 2. Structs, Methods, and Interfaces
+This is where Go gets interesting. It’s object-oriented but not in the traditional class-based sense.
+- **Structs**: Define data shapes.
+- **Methods**: Attach functions to structs (receivers).
+- **Interfaces**: Implicit implementation. If a type has the methods, it implements the interface. No `implements` keyword required.
+
+### 3. Generics
+I was glad to see Generics (introduced in Go 1.18) covered. Writing type-safe, reusable code without casting `interface{}` everywhere is a huge win for maintainability.
+
+## The Power of Concurrency
+
+The real reason I chose Go for my IoT backend is its concurrency model. Handling thousands of device connections requires something lightweight and efficient.
+
+### Goroutines
+Instead of heavy OS threads, Go uses **Goroutines**. They are incredibly lightweight threads managed by the Go runtime. You can spin up thousands of them with just the `go` keyword.
+
+```go
+go doSomething() // Runs in a new goroutine
+```
+
+### Channels & Synchronization
+Communicating between these goroutines is elegant using **Channels**. They prevent race conditions by allowing safe data exchange.
+I also explored `sync.Mutex` for more traditional locking mechanisms when shared state is unavoidable.
+
+## Why Go for my IIoT SaaS?
+
+My upcoming project involves handling real-time data from industrial sensors.
+1.  **Performance**: Compiled to machine code, fast startup, low memory footprint.
+2.  **Concurrency**: Perfect for handling multiple sensor streams simultaneously.
+3.  **Simplicity**: Easy to read and maintain, which is crucial as the codebase grows.
+4.  **Deployment**: Single binary deployment. No "dependency hell" on the server.
+
+## What's Next?
+
+Now that I have the basics down, I'm starting the implementation of the IoT backend. I'll be using standard libraries where possible and exploring the ecosystem for MQTT and WebSocket support.
+
+Stay tuned for more updates as I build this out!
