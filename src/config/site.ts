@@ -57,7 +57,7 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "Abdessamie",
   title: "Abdessamie - Full Stack Developer",
-  description: "I am a Full Stack Developer specializing in React, Next.js, TypeScript, Python, and Postgres. I turn complex problems into scalable, user-friendly applications.",
+  description: "I am a Full Stack Developer specializing in React, Next.js, TypeScript, C#, .NET, and Avalonia UI. I turn complex problems into scalable, user-friendly applications.",
   url: "https://abdessamie.dev",
   author: {
     name: "Abdessamie",
@@ -106,7 +106,7 @@ export const siteConfig: SiteConfig = {
     titleSuffix: "Solutions",
     skills: [
       { text: "React & Next.js", className: "bg-sky-500" },
-      { text: "Python & SQL", className: "bg-emerald-500" },
+      { text: "C# & .NET", className: "bg-purple-600" },
       { text: "Full Stack Apps", className: "bg-orange-500" }
     ]
   },

@@ -20,13 +20,15 @@ export const metadata: Metadata = {
     template: "%s | Abdessamie",
   },
   description:
-    "I build automation systems, internal tools, and client-facing applications that streamline business operations. Specializing in React, Next.js, Python, and PostgreSQL.",
+    "I build automation systems, internal tools, and client-facing applications that streamline business operations. Specializing in React, Next.js, C#, .NET, and Avalonia UI.",
   keywords: [
     "Full Stack Developer",
     "Automation Expert",
     "React Developer",
     "Next.js Developer",
-    "Python Developer",
+    "C# Developer",
+    ".NET Developer",
+    "Avalonia UI",
     "Internal Tools",
     "Business Automation",
     "API Integration",

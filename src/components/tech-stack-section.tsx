@@ -4,17 +4,18 @@ import {
     SiReact,
     SiNextdotjs,
     SiTypescript,
-    SiPython,
     SiPostgresql,
     SiDocker,
     SiTailwindcss,
     SiNodedotjs,
     SiGit,
-    SiFastapi,
     SiNeovim,
     SiLinear,
     SiGithub,
+    SiDotnet,
 } from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
+import { AvaloniaIcon } from "@/components/icons/avalonia-icon";
 import { AnimatedText } from "@/components/ui/animated-text";
 
 const technologies = [
@@ -37,15 +38,21 @@ const technologies = [
         span: "md:col-span-2",
     },
     {
-        icon: <SiPython className="text-[#3776AB]" />,
-        name: "Python",
-        description: "Backend & automation",
+        icon: <TbBrandCSharp className="text-[#512BD4]" />,
+        name: "C#",
+        description: "Modern, object-oriented language",
         span: "md:col-span-1",
     },
     {
-        icon: <SiFastapi className="text-[#009688]" />,
-        name: "FastAPI",
-        description: "High-performance APIs",
+        icon: <SiDotnet className="text-[#512BD4]" />,
+        name: ".NET & ASP.NET Core",
+        description: "High-performance framework",
+        span: "md:col-span-1",
+    },
+    {
+        icon: <AvaloniaIcon />,
+        name: "Avalonia UI",
+        description: "Cross-platform XAML UI framework",
         span: "md:col-span-1",
     },
     {
