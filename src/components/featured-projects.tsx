@@ -9,11 +9,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects";
 import { AnimatedText } from "@/components/ui/animated-text";
+import { siteConfig } from "@/config/site";
 
 export function FeaturedProjects() {
     const allProjects = getAllProjects();
-    // Display up to 3 most recent projects
-    const featuredProjects = allProjects.slice(0, 3);
+    const featuredProjects = allProjects.slice(0, siteConfig.featuredProjects.maxDisplay);
 
     if (featuredProjects.length === 0) {
         return null;
@@ -29,10 +29,10 @@ export function FeaturedProjects() {
             <div className="relative container mx-auto max-w-6xl">
                 <div className="mb-12 text-center">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                        <AnimatedText text="Featured Projects" animation="four" />
+                        <AnimatedText text={siteConfig.featuredProjects.title} animation="four" />
                     </h2>
                     <p className="mt-3 text-lg text-muted-foreground">
-                        Some of the things I&apos;ve built recently.
+                        {siteConfig.featuredProjects.subtitle}
                     </p>
                 </div>
 

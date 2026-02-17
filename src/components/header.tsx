@@ -38,8 +38,8 @@ export function SiteHeader() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
           <Image
-            src="/abdessamie-personal-logo.png"
-            alt={siteConfig.name}
+            src={siteConfig.header.logo.src}
+            alt={siteConfig.header.logo.alt}
             width={36}
             height={36}
             className="h-8 w-8 rounded-full sm:h-9 sm:w-9"

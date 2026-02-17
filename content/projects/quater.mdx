@@ -1,0 +1,64 @@
+---
+title: "Quater"
+description: "Water quality monitoring desktop application for industrial laboratories. Built with C#, Avalonia, and PostgreSQL with multi-tenant authorization."
+date: "2026-02-17"
+image: "/projects/quater/hero.jpg"
+tags: ["C#", ".NET 10", "Avalonia", "PostgreSQL", "Multi-tenant", "MassTransit"]
+github: "https://github.com/Abdssamie/Quater"
+demo: ""
+sections:
+  - image: "/projects/quater/section-1.jpg"
+    title: "Multi-lab Authorization"
+    description: "Fine-grained access control allowing laboratory managers to control data visibility per lab with row-level security."
+  - image: "/projects/quater/section-2.jpg"
+    title: "Real-time Updates"
+    description: "Event-driven architecture using MassTransit for reliable inter-service communication and real-time data sync."
+---
+
+# Quater - Water Quality Desktop App
+
+Quater is an enterprise-grade desktop application for water quality analysis in industrial laboratories. Built with C#/.NET 10, Avalonia for cross-platform UI, and PostgreSQL with advanced authorization patterns.
+
+## Project Overview
+
+This project demonstrates my ability to build complex, enterprise-grade systems with proper authorization, event-driven architecture, and maintainable code patterns.
+
+### Key Technologies
+
+- **Backend**: C# /.NET 10, Entity Framework Core, MassTransit
+- **Desktop**: Avalonia UI (cross-platform)
+- **Database**: PostgreSQL with row-level security
+- **Architecture**: Multi-tenant with claims-based authorization
+
+## Features
+
+### 1. Multi-tenant Authorization
+Implemented policies-based and claims-based authorization allowing laboratory managers to define granular access permissions per lab. Users can only see data they're authorized for.
+
+### 2. Event-Driven Architecture
+Using MassTransit for reliable message publishing and consumption between services. Enables real-time updates across the application.
+
+### 3. Enterprise Patterns
+- Repository pattern with specification pattern
+- Unit of Work for transaction management
+- Value Objects for type-safe domain modeling
+- Integration tests for critical paths
+
+## Architecture Highlights
+
+The project follows clean architecture principles with clear separation between:
+- **Core Domain**: Business logic and entities
+- **Application**: Use cases and orchestration
+- **Infrastructure**: Database, messaging
+- **Presentation**: Avalonia UI
+
+## AI Workflow
+
+This project was built using my AI-assisted development workflow:
+- **Plannotator** for planning and documenting architecture decisions
+- **OpenCode** for code execution and review
+- Every AI-generated plan is reviewed against engineering standards before execution
+
+## GitHub
+
+[View on GitHub →](https://github.com/Abdssamie/Quater)

@@ -14,91 +14,40 @@ import {
     SiNeovim,
     SiLinear,
     SiGithub,
+    SiSharp,
+    SiDotnet,
+    SiRedis,
+    SiExpress,
 } from "react-icons/si";
 import { AnimatedText } from "@/components/ui/animated-text";
+import { siteConfig } from "@/config/site";
 
-const technologies = [
-    {
-        icon: <SiReact className="text-[#61DAFB]" />,
-        name: "React",
-        description: "UI library for building interfaces",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiNextdotjs className="text-foreground" />,
-        name: "Next.js",
-        description: "Full-stack React framework",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiTypescript className="text-[#3178C6]" />,
-        name: "TypeScript",
-        description: "Type-safe JavaScript",
-        span: "md:col-span-2",
-    },
-    {
-        icon: <SiPython className="text-[#3776AB]" />,
-        name: "Python",
-        description: "Backend & automation",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiFastapi className="text-[#009688]" />,
-        name: "FastAPI",
-        description: "High-performance APIs",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiPostgresql className="text-[#4169E1]" />,
-        name: "PostgreSQL",
-        description: "Relational database",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiDocker className="text-[#2496ED]" />,
-        name: "Docker",
-        description: "Containerization",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiTailwindcss className="text-[#06B6D4]" />,
-        name: "Tailwind CSS",
-        description: "Utility-first styling",
-        span: "md:col-span-2",
-    },
-    {
-        icon: <SiNodedotjs className="text-[#339933]" />,
-        name: "Node.js",
-        description: "JavaScript runtime",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiGit className="text-[#F05032]" />,
-        name: "Git",
-        description: "Version control",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiNeovim className="text-[#57A143]" />,
-        name: "Neovim",
-        description: "Hyperextensible Vim-based text editor",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiLinear className="text-[#5E6AD2]" />,
-        name: "Linear",
-        description: "Issue tracking & project management",
-        span: "md:col-span-1",
-    },
-    {
-        icon: <SiGithub className="text-foreground" />,
-        name: "GitHub",
-        description: "Collaboration & version control",
-        span: "md:col-span-2",
-    },
-];
+const iconComponentMap: Record<string, React.ReactNode> = {
+  SiReact: <SiReact className="text-[#61DAFB]" />,
+  SiNextdotjs: <SiNextdotjs className="text-foreground" />,
+  SiTypescript: <SiTypescript className="text-[#3178C6]" />,
+  SiPython: <SiPython className="text-[#3776AB]" />,
+  SiFastapi: <SiFastapi className="text-[#009688]" />,
+  SiPostgresql: <SiPostgresql className="text-[#4169E1]" />,
+  SiDocker: <SiDocker className="text-[#2496ED]" />,
+  SiTailwindcss: <SiTailwindcss className="text-[#06B6D4]" />,
+  SiNodedotjs: <SiNodedotjs className="text-[#339933]" />,
+  SiGit: <SiGit className="text-[#F05032]" />,
+  SiNeovim: <SiNeovim className="text-[#57A143]" />,
+  SiLinear: <SiLinear className="text-[#5E6AD2]" />,
+  SiGithub: <SiGithub className="text-foreground" />,
+  SiSharp: <SiSharp className="text-[#512BD4]" />,
+  SiDotnet: <SiDotnet className="text-[#512BD4]" />,
+  SiRedis: <SiRedis className="text-[#DC382D]" />,
+  SiExpress: <SiExpress className="text-foreground" />,
+};
 
 export function TechStackSection() {
+    const technologies = siteConfig.techStack.map((tech) => ({
+        ...tech,
+        icon: iconComponentMap[tech.iconName] || <SiGithub className="text-foreground" />,
+    }));
+
     return (
         <section className="container mx-auto py-16 px-4">
             <div className="mb-12 text-center">
