@@ -187,6 +187,7 @@ export const siteConfig: SiteConfig = {
     skills: [
       { text: "C# / .NET", className: "bg-purple-600" },
       { text: "React & Next.js", className: "bg-sky-500" },
+      { text: "C# / .NET", className: "bg-purple-600" },
       { text: "Full Stack Apps", className: "bg-emerald-500" }
     ]
   },

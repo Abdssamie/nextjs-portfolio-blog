@@ -4,21 +4,18 @@ import {
     SiReact,
     SiNextdotjs,
     SiTypescript,
-    SiPython,
     SiPostgresql,
     SiDocker,
     SiTailwindcss,
     SiNodedotjs,
     SiGit,
-    SiFastapi,
     SiNeovim,
     SiLinear,
     SiGithub,
-    SiSharp,
     SiDotnet,
-    SiRedis,
-    SiExpress,
 } from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
+import { AvaloniaIcon } from "@/components/icons/avalonia-icon";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { siteConfig } from "@/config/site";
 
@@ -26,8 +23,6 @@ const iconComponentMap: Record<string, React.ReactNode> = {
   SiReact: <SiReact className="text-[#61DAFB]" />,
   SiNextdotjs: <SiNextdotjs className="text-foreground" />,
   SiTypescript: <SiTypescript className="text-[#3178C6]" />,
-  SiPython: <SiPython className="text-[#3776AB]" />,
-  SiFastapi: <SiFastapi className="text-[#009688]" />,
   SiPostgresql: <SiPostgresql className="text-[#4169E1]" />,
   SiDocker: <SiDocker className="text-[#2496ED]" />,
   SiTailwindcss: <SiTailwindcss className="text-[#06B6D4]" />,
@@ -36,10 +31,7 @@ const iconComponentMap: Record<string, React.ReactNode> = {
   SiNeovim: <SiNeovim className="text-[#57A143]" />,
   SiLinear: <SiLinear className="text-[#5E6AD2]" />,
   SiGithub: <SiGithub className="text-foreground" />,
-  SiSharp: <SiSharp className="text-[#512BD4]" />,
   SiDotnet: <SiDotnet className="text-[#512BD4]" />,
-  SiRedis: <SiRedis className="text-[#DC382D]" />,
-  SiExpress: <SiExpress className="text-foreground" />,
 };
 
 export function TechStackSection() {
