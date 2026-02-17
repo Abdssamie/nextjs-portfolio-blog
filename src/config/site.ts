@@ -185,10 +185,9 @@ export const siteConfig: SiteConfig = {
     titlePrefix: "Building",
     titleSuffix: "Solutions",
     skills: [
-      { text: "C# / .NET", className: "bg-purple-600" },
       { text: "React & Next.js", className: "bg-sky-500" },
-      { text: "C# / .NET", className: "bg-purple-600" },
-      { text: "Full Stack Apps", className: "bg-emerald-500" }
+      { text: "C# & .NET", className: "bg-purple-600" },
+      { text: "Full Stack Apps", className: "bg-orange-500" }
     ]
   },
   contact: {
