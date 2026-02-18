@@ -54,7 +54,7 @@ export function MobileNav({ items, socials }: MobileNavProps) {
                                         key={social.label}
                                         href={social.href}
                                         target="_blank"
-                                        rel="noreferrer"
+                                        rel="noopener noreferrer"
                                         className="text-muted-foreground hover:text-foreground transition-colors"
                                         aria-label={social.label}
                                     >
