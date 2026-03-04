@@ -1,4 +1,5 @@
 import path from "path";
+import { cache } from "react";
 import { getAllItems, getItemBySlug, getAllSlugs as getSlugs, extractToc as extractTocUtil, TocItem, MdxItem, MdxItemMeta } from "./mdx";
 
 const contentDirectory = path.join(process.cwd(), "content/blog");
@@ -21,17 +22,17 @@ const blogFieldMapper = (data: Record<string, unknown>) => ({
     tags: (data.tags as string[]) || undefined,
 });
 
-export function getAllPosts(): BlogPostMeta[] {
+export const getAllPosts = cache((): BlogPostMeta[] => {
     return getAllItems<BlogPostMeta>(contentDirectory, blogFieldMapper);
-}
+});
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export const getPostBySlug = cache((slug: string): BlogPost | null => {
     return getItemBySlug<BlogPost>(contentDirectory, slug, blogFieldMapper);
-}
+});
 
-export function getAllSlugs(): string[] {
+export const getAllSlugs = cache((): string[] => {
     return getSlugs(contentDirectory);
-}
+});
 
 export { type TocItem };
 

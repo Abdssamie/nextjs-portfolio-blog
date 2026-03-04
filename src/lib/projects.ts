@@ -1,4 +1,5 @@
 import path from "path";
+import { cache } from "react";
 import { getAllItems, getItemBySlug, getAllSlugs as getSlugs, extractToc as extractTocUtil, TocItem, MdxItem, MdxItemMeta } from "./mdx";
 
 const contentDirectory = path.join(process.cwd(), "content/projects");
@@ -33,17 +34,17 @@ const projectFieldMapper = (data: Record<string, unknown>) => ({
     sections: (data.sections as ProjectSection[]) || undefined,
 });
 
-export function getAllProjects(): ProjectPostMeta[] {
+export const getAllProjects = cache((): ProjectPostMeta[] => {
     return getAllItems<ProjectPostMeta>(contentDirectory, projectFieldMapper);
-}
+});
 
-export function getProjectBySlug(slug: string): ProjectPost | null {
+export const getProjectBySlug = cache((slug: string): ProjectPost | null => {
     return getItemBySlug<ProjectPost>(contentDirectory, slug, projectFieldMapper);
-}
+});
 
-export function getAllProjectSlugs(): string[] {
+export const getAllProjectSlugs = cache((): string[] => {
     return getSlugs(contentDirectory);
-}
+});
 
 export { type TocItem };
 
