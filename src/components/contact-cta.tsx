@@ -1,4 +1,3 @@
-import React from "react";
 import { siteConfig } from "@/config/site";
 import { AnimatedText } from "@/components/ui/animated-text";
 
