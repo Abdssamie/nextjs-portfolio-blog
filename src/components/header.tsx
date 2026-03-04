@@ -58,7 +58,7 @@ export function SiteHeader() {
               key={social.label}
               href={social.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground hidden sm:block"
             >
               {social.icon}
