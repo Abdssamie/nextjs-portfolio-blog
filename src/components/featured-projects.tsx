@@ -4,7 +4,6 @@
  * Displays the 3 most recent projects from MDX content files on the homepage.
  * Projects are sorted by date (newest first) in the getAllProjects function.
  */
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects";
