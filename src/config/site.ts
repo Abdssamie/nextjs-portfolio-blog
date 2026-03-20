@@ -1,5 +1,5 @@
 import { Mail, Linkedin, MessageCircle } from "lucide-react";
-import { SiGithub, SiX, SiReact, SiNextdotjs, SiTypescript, SiPython, SiPostgresql, SiDocker, SiTailwindcss, SiNodedotjs, SiGit, SiFastapi, SiRedis, SiExpress, SiDotnet } from "react-icons/si";
+import { SiGithub, SiX, SiReact, SiNextdotjs, SiTypescript, SiPython, SiPostgresql, SiDocker, SiTailwindcss, SiNodedotjs, SiGit, SiFastapi, SiRedis, SiExpress, SiDotnet, SiClaude } from "react-icons/si";
 import { IconType } from "react-icons";
 import { LucideIcon } from "lucide-react";
 
@@ -110,10 +110,12 @@ export const iconMap: Record<string, IconType | LucideIcon> = {
   SiDotnet: SiDotnet,
   SiRedis: SiRedis,
   SiExpress: SiExpress,
+  SiClaude: SiClaude,
 };
 
 const defaultTechStack: TechStackItem[] = [
   { iconName: "SiDotnet", name: "C# / .NET", description: "Backend & enterprise APIs", span: "md:col-span-1" },
+  { iconName: "SiClaude", name: "Claude Code", description: "Agentic coding assistant", span: "md:col-span-1" },
   { iconName: "SiReact", name: "React", description: "UI library for building interfaces", span: "md:col-span-1" },
   { iconName: "SiNextdotjs", name: "Next.js", description: "Full-stack React framework", span: "md:col-span-1" },
   { iconName: "SiTypescript", name: "TypeScript", description: "Type-safe JavaScript", span: "md:col-span-1" },
@@ -136,11 +138,11 @@ export const siteConfig: SiteConfig = {
   author: {
     name: "Abdssamie",
     image: "/profile.jpeg",
-    bio: "I specialize in building automation systems and helping businesses create powerful internal tools that streamline their operations. From client-facing applications to back-office workflows, I turn complex manual processes into elegant, automated solutions.",
+    bio: "I specialize in building automation systems and highly scalable applications, leveraging advanced AI tools like Claude Code for the vast majority of my development workflow. From client-facing interfaces to complex back-office workflows, I architect elegant, automated solutions with a focus on engineering excellence.",
     bioParts: [
       "I'm a <strong>4th year Chemical Engineering student</strong> at ENSC Kenitra who's self-taught in software development. I started learning to code because I wanted to build software solutions that solve real problems in my field and beyond.",
       "What makes me different? My <strong>engineering mindset</strong>. I don't just write code—I focus on <strong>architecture, maintainability, testability, and compliance</strong>. In the age of AI, I shifted from just coding to designing systems that are scalable and trustworthy.",
-      "I leverage AI tools like <strong>OpenCode, Antigravity, and Plannotator</strong> to speed up development while maintaining engineering standards. I never outsource my thinking—I use AI to execute my thoughts faster, not to think for me.",
+      "I leverage advanced AI coding agents—primarily <strong>Claude Code</strong>, which I use for the majority of my development workflow—to dramatically accelerate production without compromising engineering standards. As a power user, I rely on Claude Code as a collaborative partner to execute complex architectures efficiently, ensuring every system is robust, testable, and scalable.",
     ],
     originStory: "Started learning to code to build software solutions for chemical engineering problems. Built my first project—a website for my school's AI club—while exploring how software can solve real-world problems. Now I build full-stack applications with a focus on automation, scalability, and engineering quality.",
     education: {
@@ -213,8 +215,8 @@ export const siteConfig: SiteConfig = {
     },
   },
   aiWorkflow: {
-    tools: ["OpenCode", "Antigravity", "Plannotator"],
-    approach: "I use AI as a force multiplier—not to replace my thinking, but to execute faster. Every AI-generated plan goes through my engineering standards review. I verify every line of code and never blindly trust AI output.",
+    tools: ["Claude Code", "OpenCode", "Antigravity", "Plannotator"],
+    approach: "I use AI—specifically Claude Code—as a force multiplier. It powers the majority of my development, not to replace my thinking, but to execute architectural vision at unprecedented speeds. Every AI-generated plan goes through my rigorous engineering standards review to ensure reliability and scalability.",
   },
 };
 
