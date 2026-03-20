@@ -13,6 +13,7 @@ import {
     SiLinear,
     SiGithub,
     SiDotnet,
+    SiClaude,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { AvaloniaIcon } from "@/components/icons/avalonia-icon";
@@ -32,6 +33,7 @@ const iconComponentMap: Record<string, React.ReactNode> = {
   SiLinear: <SiLinear className="text-[#5E6AD2]" />,
   SiGithub: <SiGithub className="text-foreground" />,
   SiDotnet: <SiDotnet className="text-[#512BD4]" />,
+  SiClaude: <SiClaude className="text-[#D97757]" />,
 };
 
 export function TechStackSection() {
